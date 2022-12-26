@@ -14,8 +14,9 @@ pipeline {
             }
             steps {
                 sh 'cd /home/ubuntu/assignment'
-                sh 'sudo apt install docker'
-                sh 'sudo apt install aws-cli'
+		sh 'ls'
+                sh '/bin/sudo apt install docker'
+                sh '/bin/sudo apt install aws-cli'
                 sh 'ls'
             }
         }
