@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'cd /root/assignment'
 		sh 'apt update'
-                sh 'apt -y install docker aws-cli'
+                sh 'apt -y install docker awscli'
                 sh 'ls'
             }
         }
