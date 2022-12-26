@@ -2,14 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage ('Build') {
-    steps{
-        sshagent(credentials : ['pipeline_ssh']) {
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.184 git clone https://github.com/mailbinoy/assignment.git'
-		sh 'cd assignment'
-		sh './build.sh'
-                }
+    stage('Build') {
+            steps {
+                sh ./build.sh
             }
         }
+
+    stage ('Deploy') {
+        steps{
+         sshagent(credentials : ['pipeline_ssh']) {
+		    echo "Logging to ECR..."
+            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 223316186016.dkr.ecr.us-east-1.amazonaws.com'
+            sh 'docker run -d -p 80:8081 223316186016.dkr.ecr.us-east-1.amazonaws.com/assignment:latest'
+            
+                }
+            }
+        }    
     }
 }
