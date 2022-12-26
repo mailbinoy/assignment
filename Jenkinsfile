@@ -4,7 +4,6 @@ pipeline {
         stage('Build') {
             steps {
 		sh 'export DEBIAN_FRONTEND=noninteractive'
-                sh 'cd /root/assignment'
 		sh 'apt-get update'
 		sh 'apt-get install -y tzdata'
 		sh 'ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
