@@ -7,7 +7,7 @@ pipeline {
                 sh './build.sh'
             }
         }
-    }
+    
     stage ('Deploy') {
         steps{
          sshagent(credentials : ['pipeline_ssh']) {
@@ -17,5 +17,6 @@ pipeline {
             
                 }
             }
-        } 
+        }
+    } 
 }
