@@ -13,7 +13,7 @@ pipeline {
                 }
             }
             steps {
-		sh 'ENV DEBIAN_FRONTEND=noninteractive'
+		sh 'export DEBIAN_FRONTEND=noninteractive'
                 sh 'cd /root/assignment'
 		sh 'apt update'
                 sh 'apt -y install docker awscli'
