@@ -1,19 +1,22 @@
 pipeline {
     agent any
-
     stages {
-    stage('Build') {
-            steps {
-                bash './build.sh'
-            }
-        }
-    stage ('Deploy') {
-        steps{
-         sshagent(credentials : ['pipeline_ssh']) {
-            sh 'echo Logging to ECR...'
-            sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 223316186016.dkr.ecr.us-east-1.amazonaws.com'
-            sh 'docker run -d -p 80:8081 223316186016.dkr.ecr.us-east-1.amazonaws.com/assignment:latest'            
+        stage('Build') {
+            agent {
+                docker {
+                    image 'ubuntu'
+                    args '-v $HOME/assignment:/home/ubuntu/assignment'
+                    // Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely:
+                    reuseNode true
                 }
+            }
+            steps {
+                sh 'cd /home/ubuntu/assignment'
+                sh 'sudo apt install docker'
+                sh 'sudo apt install aws-cli'
+                sh 'ls'
             }
         }
     }
