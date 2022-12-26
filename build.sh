@@ -8,6 +8,4 @@ echo "Docker image tag for AWS ECR..."
 docker tag assignment:latest 223316186016.dkr.ecr.us-east-1.amazonaws.com/assignment:latest
 echo "Image Push to ECR..."
 docker push 223316186016.dkr.ecr.us-east-1.amazonaws.com/assignment:latest
-echo "Running Project..."
-docker run -d -p 80:8081 223316186016.dkr.ecr.us-east-1.amazonaws.com/assignment:latest
 exit
