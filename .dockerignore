@@ -1,3 +1,5 @@
 *.md
 .git
 Jenkinsfile
+deploy.sh
+README.md
