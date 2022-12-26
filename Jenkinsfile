@@ -19,7 +19,7 @@ pipeline {
 		sh 'apt-get install -y tzdata'
 		sh 'ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
 		sh 'dpkg-reconfigure --frontend noninteractive tzdata'
-                sh 'apt -y install docker awscli'
+                sh 'apt -y install docker.io awscli'
                 sh 'chmod +x build.sh'
 		sh './build.sh'
             }
