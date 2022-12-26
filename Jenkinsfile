@@ -20,7 +20,8 @@ pipeline {
 		sh 'ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
 		sh 'dpkg-reconfigure --frontend noninteractive tzdata'
                 sh 'apt -y install docker awscli'
-                sh 'ls'
+                sh 'chmod +x build.sh'
+		sh './build.sh'
             }
         }
     }
