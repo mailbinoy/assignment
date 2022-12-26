@@ -11,9 +11,10 @@ pipeline {
     
     stage ('Deploy') {
         steps{
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu $app_host chmod +x /home/ubuntu/deploy.sh'
-            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu $app_host /home/ubuntu/deploy.sh'
-            
+		sshagent(credentials : ['pipeline_ssh']) {
+	            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu $app_host chmod +x /home/ubuntu/deploy.sh'
+	            sh 'ssh -o StrictHostKeyChecking=no -l ubuntu $app_host /home/ubuntu/deploy.sh'
+	            }
             }
         }
     } 
