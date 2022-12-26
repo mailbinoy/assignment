@@ -4,11 +4,11 @@ pipeline {
         stage('Build') {
             steps {
 		sh 'export DEBIAN_FRONTEND=noninteractive'
-		sh 'apt-get update'
-		sh 'apt-get install -y tzdata'
-		sh 'ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
-		sh 'dpkg-reconfigure --frontend noninteractive tzdata'
-                sh 'apt -y install docker.io awscli'
+		sh 'sudo apt-get update'
+		sh 'sudo apt-get install -y tzdata'
+		sh 'sudo ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
+		sh 'sudo dpkg-reconfigure --frontend noninteractive tzdata'
+                sh 'sudo apt -y install docker.io awscli'
                 sh 'chmod +x build.sh'
 		sh './build.sh'
             }
