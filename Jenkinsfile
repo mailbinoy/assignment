@@ -15,8 +15,11 @@ pipeline {
             steps {
 		sh 'export DEBIAN_FRONTEND=noninteractive'
                 sh 'cd /root/assignment'
-		sh 'apt update'
-                sh 'DEBIAN_FRONTEND=noninteractive;TZ=Etc/UTC ; apt -y install docker awscli'
+		sh 'apt-get update'
+		sh 'apt-get install -y tzdata'
+		sh 'ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime'
+		sh 'dpkg-reconfigure --frontend noninteractive tzdata'
+                sh 'apt -y install docker awscli'
                 sh 'ls'
             }
         }
