@@ -2,4 +2,5 @@
 .git
 Jenkinsfile
 deploy.sh
+build.sh
 README.md
