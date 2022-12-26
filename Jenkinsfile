@@ -16,7 +16,7 @@ pipeline {
 		sh 'export DEBIAN_FRONTEND=noninteractive'
                 sh 'cd /root/assignment'
 		sh 'apt update'
-                sh 'apt -y install docker awscli'
+                sh 'DEBIAN_FRONTEND=noninteractive;TZ=Etc/UTC ; apt -y install docker awscli'
                 sh 'ls'
             }
         }
