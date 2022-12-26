@@ -5,7 +5,7 @@ pipeline {
             agent {
                 docker {
                     image 'ubuntu'
-                    args '-v $HOME/assignment:/home/ubuntu/assignment'
+                    args '-v $HOME/assignment:/root/assignment'
                     args '-u 0'
                     // Run the container on the node specified at the
                     // top-level of the Pipeline, in the same workspace,
@@ -14,7 +14,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd /home/ubuntu/assignment'
+                sh 'cd /root/assignment'
 		sh 'apt update'
                 sh 'apt -y install docker aws-cli'
                 sh 'ls'
